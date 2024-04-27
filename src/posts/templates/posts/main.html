@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}ajax forms{% endblock title %}
+
+{% block scripts %}
+<script src="{% static 'posts/main.js' %}" defer></script>
+{% endblock scripts %}
+
+{% block content %}
+<h1>posts</h1>
+<!-- {% for post in posts %}
+<h3>{{ post.title }}</h3>
+<p>{{ post.body }}</p> 
+<p>{{ post.author }}</p><br>
+{% endfor %} -->
+<div id="spinner-box">
+    <div class="spinner-border" role="status"></div>
+</div>
+<div id="posts-box"></div>
+<div id="id"></div>
+{% endblock content %}
+
