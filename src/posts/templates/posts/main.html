@@ -13,10 +13,13 @@
 <p>{{ post.body }}</p> 
 <p>{{ post.author }}</p><br>
 {% endfor %} -->
-<div id="spinner-box">
+
+<div id="posts-box"></div>
+<div id="spinner-box" class="text-center">
     <div class="spinner-border" role="status"></div>
 </div>
-<div id="posts-box"></div>
-<div id="id"></div>
+<div class="text-center mb-3" id="end-box">
+    <button id="load-btn" class="btn btn-primary">Load More</button>
+</div>
 {% endblock content %}
 
