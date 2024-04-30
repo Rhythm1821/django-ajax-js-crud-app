@@ -60,6 +60,17 @@ def post_detail(request,pk):
 def is_ajax(request):
     return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
 
+def post_detail_data_view(request,pk):
+    obj=Post.objects.get(pk=pk)
+    data={
+        'id':obj.id,
+        'title':obj.title,
+        'body':obj.body,
+        'author':obj.author.user.username,
+        'logged_in': request.user.username
+    }
+    return JsonResponse({"data":data})
+
 def like_unlike_post(request):
     if is_ajax(request):
         pk=request.POST.get('pk')
@@ -73,5 +84,21 @@ def like_unlike_post(request):
         obj.save()
         return JsonResponse({'count': obj.like_count, 'liked': liked})
 
-def hello_world_view(request):
-    return JsonResponse({'text': 'hello world'})
+def update_post(request,pk):
+    obj = Post.objects.get(pk=pk)
+    if is_ajax(request):
+        title=request.POST.get('title')
+        body=request.POST.get('body')
+        obj.title=title
+        obj.body=body
+        obj.save()
+        return JsonResponse({
+            'title': obj.title,
+            'body': obj.body
+        })
+
+def delete_post(request,pk):
+    obj = Post.objects.get(pk=pk)
+    if is_ajax(request):
+        obj.delete()
+        return JsonResponse({})

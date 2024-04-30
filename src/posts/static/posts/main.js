@@ -28,6 +28,12 @@ function getCookie(name) {
 }
 const csrftoken = getCookie('csrftoken');
 
+const deleted = localStorage.getItem('title')
+if (deleted){
+    handleAlerts('danger',`${deleted} deleted successfully`)
+    localStorage.clear()
+}
+
 const likeUnlikePost = () => {
     const likeUnlikeForms = [...document.getElementsByClassName('like-unlike-form')]
     likeUnlikeForms.forEach(form => {form.addEventListener('submit', e=>{
